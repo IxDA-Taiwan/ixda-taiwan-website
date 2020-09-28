@@ -7,12 +7,14 @@
 
 import React from "react"
 import PropTypes from "prop-types"
+import { ContextProviderComponent } from "./context"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import "./layout.css"
+import "./layout.scss"
+import Footer from "./footer"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, hero, menu, width }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,25 +26,23 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+    <ContextProviderComponent>
+      <Header
+        siteTitle={data.site.siteMetadata?.title || `Title`}
+        hero={hero}
+        menu={menu}
+      />
+      {hero || <div style={{ height: 75 }} />}
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          maxWidth: width || 800,
         }}
       >
         <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
       </div>
-    </>
+      <Footer></Footer>
+    </ContextProviderComponent>
   )
 }
 

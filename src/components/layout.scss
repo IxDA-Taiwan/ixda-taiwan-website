@@ -1,0 +1,47 @@
+@import '../../node_modules/normalize.css/normalize.css';
+@import '_veriables.scss';
+
+html {
+  font-family: Verdana, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, "Noto Sans TC", "PingFang TC", "Heiti TC", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  background-image: url('/images/background.svg');
+  background-position: top center;
+  background-size: 100%;
+  background-repeat: repeat-y;
+  color: #222;
+}
+
+strong {
+  position: relative;
+  line-height: 2.5em;
+
+  &::after,
+  &::before {
+    content: "┏";
+    position: relative;
+    top: -1em;
+    color: $ixda-green;
+  }
+  &::after {
+    content: "┛";
+    top: 1em;
+    color: $ixda-green;
+  }
+}
+
+a {
+  color: $ixda-green;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: 768px;
+  box-sizing: content-box;
+  margin: 0 auto;
+}
+
+p {
+  line-height: 1.6em;
+}

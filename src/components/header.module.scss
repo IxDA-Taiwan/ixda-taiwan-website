@@ -1,0 +1,229 @@
+@import '_veriables.scss';
+
+.header {
+  // position: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255,255,255,0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  z-index: 100;
+  // box-shadow: 0px 0px 5px rgba(64,64,64,0.2);
+
+  box-sizing: border-box;
+  padding: 1em;
+  transition: height 0.5s, background-color 0.5s;
+
+  .menu-label {
+    float: right;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+  }
+  .menu-controller {
+    display: none;
+  }
+
+  .logo {
+    display: inline-block;
+    :global(svg) {
+      width:auto;
+      height: 40px;
+      transition: all 0.5s;
+      :global(:a) {
+        fill: $ixda-green;
+      }
+      :global(.b) {
+        fill: $ixda-dark-grey;
+      }
+    }
+  }
+
+  :global(nav) {
+    display: flex;
+    overflow: hidden;
+    height: 0;
+    transition: all 0.5s;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    > :global(div) {
+      color: $ixda-dark-grey;
+      > :global(span) {
+        display: none;
+      }
+    }
+
+    :global(a) {
+      display: block;
+      padding: 0.75em;
+      box-sizing: content-box;
+      transition: all 0.5s;
+      text-align: center;
+      color: $ixda-dark-grey;
+      font-weight: normal;
+    }
+  }
+
+  .menu-controller {
+    &:checked ~ :global(nav) {
+      height: calc(100vh - 40px - 2em);
+    }
+  }
+
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+
+    .menu-label {
+      display: none;
+    }
+
+    :global(nav) {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: row;
+      position: unset;
+      height: auto;
+      background-color: transparent;
+      align-items: center;
+      :global(a) {
+        display: inline-block;
+        color: $ixda-dark-grey;
+        padding: 0;
+        width: auto;
+        margin: 0 1.5vw;
+      }
+      :global(div) {
+        width: auto;
+        padding: 0 2vw 0 1.5vw;
+        display: block;
+        :global(span) {
+          display: block;
+          padding: 1em 0;
+          position: relative;
+          &::after {
+            display: block;
+            content: '\25BE';
+            position: absolute;
+            font-size: 1em;
+            transform: scale(2, 1.5);
+            top: 1em;
+            right: -0.75em;
+          }
+
+          + .inner {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            background: #FFFFFF;
+            box-shadow: 0 0 4px 0 rgba(0,0,0,0.50);
+            border-radius: 0.2em;
+            margin: 0 -2.5em;
+            :global(a) {
+              color: $ixda-dark-grey;
+              display: block;
+              padding: 0.75em 0;
+            }
+          }
+        }
+
+        &:hover {
+          :global(span) {
+            + .inner {
+              display: block;
+              
+            }
+          }
+        }
+      }
+    }
+    .menu-controller {
+      &:checked ~ :global(nav) {
+        width: auto;
+      }
+    }
+  }
+
+  @media (min-width: 960px) {
+    .logo {
+      margin: 0 1em;
+    }
+  }
+
+  &.hero {
+    &.scroll-over-menu {
+      background-color: transparent;
+      -webkit-backdrop-filter: unset;
+      backdrop-filter: unset;
+      box-shadow: none;
+      position: fixed;
+
+      :global(nav) {
+        :global(div) {
+          color: #fff;
+        }
+        :global(a) {
+          color: #fff;
+        }
+      }
+
+      .logo {
+        :global(:a) {
+          fill:#47B8B6;
+        }
+        :global(svg) {
+          :global(.b) {
+            fill: #ffffff;
+          }
+        }
+      }
+
+      .menu-label {
+        // border: 1px solid #fff;
+        :global(svg) {
+          fill: #ffffff;
+        }
+      }
+
+      @media (min-width: 768px) {
+        position: absolute;
+        padding: 1em;
+        .logo {
+          :global(svg) {
+            width:auto;
+            height: 40px;
+          }
+        }
+        :global(nav) {
+          :global(a) {
+            color: #fff;
+          }
+          .inner {
+            :global(a) {
+              color: $ixda-dark-grey;
+            }
+          }
+        }
+      }
+
+      @media (min-width: 960px) {
+        position: absolute;
+        padding: 2em;
+        .logo {
+          :global(svg) {
+            width:auto;
+            height: 80px;
+          }
+        }
+      }
+    }
+  }
+}

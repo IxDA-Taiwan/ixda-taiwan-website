@@ -1,0 +1,30 @@
+@import '_veriables.scss';
+
+.footer {
+  background-color: $ixda-dark-green;
+  padding: 1em;
+
+  .social {
+    max-width: 480px;
+    margin: 1em auto;
+    display: flex;
+    justify-content: space-around;
+
+    :global(a) {
+      width: 32px;
+      :global(svg) {
+        height: 32px;
+        width: 32px;
+      }
+    }
+  }
+
+  .copyright {
+    max-width: 480px;
+    margin: 1em auto;
+    font-size: 0.8em;
+    text-align: center;
+    color: #fff;
+
+  }
+}
